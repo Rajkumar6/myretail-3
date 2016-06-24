@@ -29,7 +29,7 @@ public class ProdcutNameBoImpl implements ProductNameBo {
 	}
 
 	@Override
-	public Result getAllProductNames(ProductName productName) {
+	public Result getAllProductNames() {
 		return null;
 	}
 	

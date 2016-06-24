@@ -13,6 +13,6 @@ public interface ProductNameBo {
 	
 	public Result getProductName(ProductName productName);
 	
-	public Result getAllProductNames(ProductName productName);
+	public Result getAllProductNames();
 
 }

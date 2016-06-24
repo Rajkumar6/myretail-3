@@ -14,32 +14,33 @@ import com.myretail.domain.ProductName;
 import com.myretail.model.Result;
 
 @RestController
+@RequestMapping("/productName")
 public class ProductNameController {
 	
 	@Autowired
 	private ProductNameBo productNameBo;
 
-	@RequestMapping(value="/productName", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public Result saveProductName(@RequestBody ProductName productName){
 		return productNameBo.saveProductName(productName);
 	}
 	
-	@RequestMapping(value="/productName", method=RequestMethod.PUT)
+	@RequestMapping(method=RequestMethod.PUT)
 	public Result updateProductName(@RequestBody ProductName productName){
 		return productNameBo.updateProductName(productName);
 	}
 	
-	@RequestMapping(value="/productName/{productId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{productId}", method=RequestMethod.DELETE)
 	public Result deleteProductName(@PathVariable String productId){
 		return productNameBo.deleteProductName(productId);
 	}
 	
-	@RequestMapping(value="/productName/{productId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{productId}", method=RequestMethod.GET)
 	public ProductName getProductName(@PathVariable String productId){
 		return productNameBo.getProductName(productId);
 	}
 	
-	@RequestMapping(value="/productName", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ArrayList<ProductName> getAllProductNames(){
 		return productNameBo.getAllProductNames();
 	}

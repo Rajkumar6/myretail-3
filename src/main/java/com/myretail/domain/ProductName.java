@@ -2,10 +2,10 @@ package com.myretail.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 @Document
-@Repository
+@Component
 public class ProductName {
 	
 	@Id

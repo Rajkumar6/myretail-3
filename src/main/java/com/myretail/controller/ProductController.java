@@ -9,7 +9,7 @@ import com.myretail.model.Result;
 @RestController
 public class ProductController {
 
-	@RequestMapping(value="/product", method=RequestMethod.POST)
+	@RequestMapping(value="/productName", method=RequestMethod.POST)
 	public Result saveProductName(){
 		return null;
 	}

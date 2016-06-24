@@ -11,7 +11,7 @@ public interface ProductNameBo {
 	
 	public Result updateProductName(ProductName productName);
 	
-	public Result deleteProductName(ProductName productName);
+	public Result deleteProductName(String productId);
 	
 	public ProductName getProductName(String productId);
 	

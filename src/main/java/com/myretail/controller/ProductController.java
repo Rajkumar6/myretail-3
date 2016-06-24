@@ -29,9 +29,9 @@ public class ProductController {
 		return productNameBo.updateProductName(productName);
 	}
 	
-	@RequestMapping(value="/productName", method=RequestMethod.DELETE)
-	public Result deleteProductName(@RequestBody ProductName productName){
-		return productNameBo.deleteProductName(productName);
+	@RequestMapping(value="/productName/{productId}", method=RequestMethod.DELETE)
+	public Result deleteProductName(@PathVariable String productId){
+		return productNameBo.deleteProductName(productId);
 	}
 	
 	@RequestMapping(value="/productName/{productId}", method=RequestMethod.GET)

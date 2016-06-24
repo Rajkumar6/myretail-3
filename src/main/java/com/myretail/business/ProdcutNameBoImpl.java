@@ -21,13 +21,11 @@ public class ProdcutNameBoImpl implements ProductNameBo {
 	@Resource(name="errorResultBean")
 	private Result errorResult;
 	
-	
-	
 	@Override
 	public Result saveProductName(ProductName productName) {
 		try{
-		productNameDao.saveProductName(productName);
-		return successResult;
+			productNameDao.saveProductName(productName);
+			return successResult;
 		}catch(Exception e){
 			e.printStackTrace();
 			return errorResult;
@@ -36,22 +34,48 @@ public class ProdcutNameBoImpl implements ProductNameBo {
 
 	@Override
 	public Result updateProductName(ProductName productName) {
-		return null;
+		try{	
+			if(getProductName(productName.getProductId())==null){
+				return errorResult;
+			}
+			productNameDao.updateProductName(productName);
+			return successResult;
+		}catch(Exception e){
+			e.printStackTrace();
+			return errorResult;
+		}
 	}
 
 	@Override
-	public Result deleteProductName(ProductName productName) {
-		return null;
+	public Result deleteProductName(String productId) {
+		try{
+			productNameDao.deleteProductName(productId);
+			return successResult;
+		}catch(Exception e){
+			e.printStackTrace();
+			return errorResult;
+		}
+		
 	}
 
 	@Override
 	public ProductName getProductName(String productId) {
-		return null;
+		try{
+			return productNameDao.getProductName(productId);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public ArrayList<ProductName> getAllProductNames() {
-		return null;
+		try{
+			return productNameDao.getAllProductNames();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

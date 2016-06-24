@@ -10,7 +10,7 @@ public interface ProductNameDao {
 	
 	public void updateProductName(ProductName productName);
 	
-	public void deleteProductName(ProductName productName);
+	public void deleteProductName(String productId);
 	
 	public ProductName getProductName(String productId);
 	

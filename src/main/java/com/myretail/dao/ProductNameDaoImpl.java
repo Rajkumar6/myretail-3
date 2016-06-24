@@ -2,8 +2,11 @@ package com.myretail.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.myretail.domain.ProductName;
 
+@Repository
 public class ProductNameDaoImpl implements ProductNameDao {
 
 	@Override

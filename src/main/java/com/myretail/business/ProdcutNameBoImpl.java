@@ -2,12 +2,12 @@ package com.myretail.business;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.myretail.domain.ProductName;
 import com.myretail.model.Result;
 
-@Component
+@Service
 public class ProdcutNameBoImpl implements ProductNameBo {
 
 	@Override

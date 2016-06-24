@@ -1,6 +1,5 @@
 package com.myretail.domain;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Repository;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 public class ProductName {
 	
 	@Id
-	private ObjectId id;
 	private String productId;
 	private String productName;
 	

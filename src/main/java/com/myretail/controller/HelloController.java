@@ -1,5 +1,7 @@
 package com.myretail.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,13 @@ public class HelloController {
 		samp.setMessage("This is a sample message from eclipse");
 		samp.setMessageId(1);
 		mongoTemplate.insert(samp);
-		return "Sample Message Insert Successful";
+		return "Sample Message Insert Successful!";
 		
+	}
+	
+	@RequestMapping("/getsampledata")
+	public ArrayList<Sample> getSampleData(){
+		return (ArrayList<Sample>)mongoTemplate.findAll(Sample.class);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.myretail.business;
 
+import java.util.ArrayList;
+
 import com.myretail.domain.ProductName;
 import com.myretail.model.Result;
 
@@ -11,8 +13,8 @@ public interface ProductNameBo {
 	
 	public Result deleteProductName(ProductName productName);
 	
-	public Result getProductName(ProductName productName);
+	public ProductName getProductName(ProductName productName);
 	
-	public Result getAllProductNames();
+	public ArrayList<ProductName> getAllProductNames();
 
 }

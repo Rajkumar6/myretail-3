@@ -1,5 +1,7 @@
 package com.myretail.business;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Component;
 
 import com.myretail.domain.ProductName;
@@ -24,12 +26,12 @@ public class ProdcutNameBoImpl implements ProductNameBo {
 	}
 
 	@Override
-	public Result getProductName(ProductName productName) {
+	public ProductName getProductName(ProductName productName) {
 		return null;
 	}
 
 	@Override
-	public Result getAllProductNames() {
+	public ArrayList<ProductName> getAllProductNames() {
 		return null;
 	}
 	

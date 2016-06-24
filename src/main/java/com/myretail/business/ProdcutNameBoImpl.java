@@ -26,7 +26,7 @@ public class ProdcutNameBoImpl implements ProductNameBo {
 	}
 
 	@Override
-	public ProductName getProductName(ProductName productName) {
+	public ProductName getProductName(String productId) {
 		return null;
 	}
 

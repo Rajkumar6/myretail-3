@@ -13,7 +13,7 @@ public interface ProductNameBo {
 	
 	public Result deleteProductName(ProductName productName);
 	
-	public ProductName getProductName(ProductName productName);
+	public ProductName getProductName(String productId);
 	
 	public ArrayList<ProductName> getAllProductNames();
 

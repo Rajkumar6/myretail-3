@@ -11,12 +11,16 @@ import com.myretail.model.Currency;
 @Document
 @Component
 public class ProductPrice {
-	
+
 	@Id
 	private String productId;
 	private BigDecimal productPrice;
 	private Currency currency;
-	
+
+	public ProductPrice(){
+
+	}
+
 	public String getProductId() {
 		return productId;
 	}
@@ -35,7 +39,7 @@ public class ProductPrice {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
-	
-	
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.myretail.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myretail.domain.ProductPrice;
 import com.myretail.domain.Sample;
+import com.myretail.model.Currency;
 
 @RestController
 public class HelloController {
@@ -35,5 +38,6 @@ public class HelloController {
 	public ArrayList<Sample> getSampleData(){
 		return (ArrayList<Sample>)mongoTemplate.findAll(Sample.class);
 	}
+	
 	
 }

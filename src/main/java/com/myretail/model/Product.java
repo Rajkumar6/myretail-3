@@ -1,5 +1,8 @@
 package com.myretail.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Product {
 	
 	private String productId;

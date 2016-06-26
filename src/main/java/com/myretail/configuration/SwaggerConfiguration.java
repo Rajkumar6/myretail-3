@@ -32,6 +32,7 @@ public class SwaggerConfiguration {
                 .description("Documentation of myRetail product services")
                 .contact("Kartheek Maremalla")
                 .license("Apache License Version 2.0")
+                .version("2.0")
                 .build();
     }
 

@@ -13,8 +13,11 @@ import com.myretail.business.ProductPriceBo;
 import com.myretail.domain.ProductPrice;
 import com.myretail.model.Result;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/productPrice")
+@Api(value="ProductPrice")
 public class ProductPriceController {
 	
 	@Autowired

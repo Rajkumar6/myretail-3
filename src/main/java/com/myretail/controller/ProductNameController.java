@@ -13,8 +13,11 @@ import com.myretail.business.ProductNameBo;
 import com.myretail.domain.ProductName;
 import com.myretail.model.Result;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/productName")
+@Api(value="ProductName")
 public class ProductNameController {
 	
 	@Autowired

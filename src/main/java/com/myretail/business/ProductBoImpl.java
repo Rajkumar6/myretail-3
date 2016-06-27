@@ -117,6 +117,8 @@ public class ProductBoImpl implements ProductBo {
 	
 	private Product getProductPOJO(String productId, ProductName productName, ProductPrice productPrice){
 		
+		Product product = new Product();
+		
 		if(productName!=null){
 			product.setProductName(productName.getProductName());
 		}else{

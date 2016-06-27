@@ -118,6 +118,7 @@ public class ProductBoImpl implements ProductBo {
 	private Product getProductPOJO(String productId, ProductName productName, ProductPrice productPrice){
 		
 		Product product = new Product();
+		CurrentPrice currentPrice = new CurrentPrice();
 		
 		if(productName!=null){
 			product.setProductName(productName.getProductName());

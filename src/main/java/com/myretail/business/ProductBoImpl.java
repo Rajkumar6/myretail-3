@@ -74,6 +74,10 @@ public class ProductBoImpl implements ProductBo {
 	@Override
 	public Result saveProduct(Product product) {
 		
+		if(product.getProductId()==null || product.getProductId().isEmpty()){
+			return errorResult;
+		}
+		
 		try{
 		productName.setProductId(product.getProductId());
 		productName.setProductName(product.getProductName());
@@ -94,6 +98,11 @@ public class ProductBoImpl implements ProductBo {
 
 	@Override
 	public Result updateProduct(Product product) {
+		
+		if(product.getProductId()==null || product.getProductId().isEmpty()){
+			return errorResult;
+		}
+		
 		try{
 			productName.setProductId(product.getProductId());
 			productName.setProductName(product.getProductName());

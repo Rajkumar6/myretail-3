@@ -82,8 +82,10 @@ public class ProductBoImpl implements ProductBo {
 			productPrice.setCurrency(product.getCurrentPrice().getCurrency());
 			productPrice.setProductPrice(product.getCurrentPrice().getValue());
 
-			restTemplate.postForObject(productNameUrl, productName, Result.class);
-			restTemplate.postForObject(productPriceUrl, productPrice, Result.class);
+			Result res = restTemplate.postForObject(productNameUrl, productName, Result.class);
+			if(res.getCode().equals(-1)) throw new Exception();
+			res = restTemplate.postForObject(productPriceUrl, productPrice, Result.class);
+			if(res.getCode().equals(-1)) throw new Exception();
 			return successResult;
 		}catch(Exception e){
 			e.printStackTrace();

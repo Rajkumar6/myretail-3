@@ -14,5 +14,7 @@ public interface ProductBo {
 	public Result saveProduct(Product product);
 	
 	public Result updateProduct(Product product);
+	
+	public Result deleteProduct(String productId);
 
 }

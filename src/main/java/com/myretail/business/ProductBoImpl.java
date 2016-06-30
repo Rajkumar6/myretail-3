@@ -24,30 +24,26 @@ public class ProductBoImpl implements ProductBo {
 	@Autowired
 	private RestTemplate restTemplate;
 	@Autowired
-	private Product product;
-	@Autowired
-	private CurrentPrice currentPrice;
-	@Autowired
 	private ProductName productName;
 	@Autowired
 	private ProductPrice productPrice;
-	
+
 	@Resource(name="successResultBean")
 	private Result successResult;
 	@Resource(name="errorResultBean")
 	private Result errorResult;
-	
+
 	@Value("${rs.ProductName}")
 	private String productNameUrl;
 	@Value("${rs.ProductPrice}")
 	private String productPriceUrl;
-	
+
 	@Override
 	public Product getProduct(String productId) {
 		try{
-		ProductName productName = restTemplate.getForObject(productNameUrl+productId, ProductName.class);
-		ProductPrice productPrice = restTemplate.getForObject(productPriceUrl+productId, ProductPrice.class);
-		return getProductPOJO(productId,productName,productPrice);
+			ProductName productName = restTemplate.getForObject(productNameUrl+productId, ProductName.class);
+			ProductPrice productPrice = restTemplate.getForObject(productPriceUrl+productId, ProductPrice.class);
+			return getProductPOJO(productId,productName,productPrice);
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -57,14 +53,14 @@ public class ProductBoImpl implements ProductBo {
 	@Override
 	public ArrayList<Product> getAllProducts() {
 		try{
-		ArrayList<Product> response = new ArrayList<Product>();
- 		ResponseEntity<ProductName[]> responseEntity = restTemplate.getForEntity(productNameUrl, ProductName[].class);
-		ProductName[] productNames = responseEntity.getBody();
-		for(ProductName productName : productNames){
-			ProductPrice productPrice = restTemplate.getForObject(productPriceUrl+productName.getProductId(), ProductPrice.class);
-			response.add(getProductPOJO(productName,productPrice));
-		}
-		return response;
+			ArrayList<Product> response = new ArrayList<Product>();
+			ResponseEntity<ProductName[]> responseEntity = restTemplate.getForEntity(productNameUrl, ProductName[].class);
+			ProductName[] productNames = responseEntity.getBody();
+			for(ProductName productName : productNames){
+				ProductPrice productPrice = restTemplate.getForObject(productPriceUrl+productName.getProductId(), ProductPrice.class);
+				response.add(getProductPOJO(productName,productPrice));
+			}
+			return response;
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -73,68 +69,79 @@ public class ProductBoImpl implements ProductBo {
 
 	@Override
 	public Result saveProduct(Product product) {
-		
+
 		if(product.getProductId()==null || product.getProductId().isEmpty()){
 			return errorResult;
 		}
-		
+
 		try{
-		productName.setProductId(product.getProductId());
-		productName.setProductName(product.getProductName());
-		
-		productPrice.setProductId(product.getProductId());
-		productPrice.setCurrency(product.getCurrentPrice().getCurrency());
-		productPrice.setProductPrice(product.getCurrentPrice().getValue());
-		
-		restTemplate.postForObject(productNameUrl, productName, Result.class);
-		restTemplate.postForObject(productPriceUrl, productPrice, Result.class);
+			productName.setProductId(product.getProductId());
+			productName.setProductName(product.getProductName());
+
+			productPrice.setProductId(product.getProductId());
+			productPrice.setCurrency(product.getCurrentPrice().getCurrency());
+			productPrice.setProductPrice(product.getCurrentPrice().getValue());
+
+			restTemplate.postForObject(productNameUrl, productName, Result.class);
+			restTemplate.postForObject(productPriceUrl, productPrice, Result.class);
+			return successResult;
+		}catch(Exception e){
+			e.printStackTrace();
+			return errorResult;
+		}
+
+	}
+
+	@Override
+	public Result updateProduct(Product product) {
+
+		if(product.getProductId()==null || product.getProductId().isEmpty()){
+			return errorResult;
+		}
+
+		try{
+			productName.setProductId(product.getProductId());
+			productName.setProductName(product.getProductName());
+
+			productPrice.setProductId(product.getProductId());
+			productPrice.setCurrency(product.getCurrentPrice().getCurrency());
+			productPrice.setProductPrice(product.getCurrentPrice().getValue());
+
+			restTemplate.put(productNameUrl, productName);
+			restTemplate.put(productPriceUrl, productPrice);
+			return successResult;
+		}catch(Exception e){
+			e.printStackTrace();
+			return errorResult;
+		}
+	}
+
+	public Result deleteProduct(String productId){
+		try{
+		restTemplate.delete(productNameUrl+productId);
+		restTemplate.delete(productPriceUrl+productId);
 		return successResult;
 		}catch(Exception e){
 			e.printStackTrace();
 			return errorResult;
 		}
-		
 	}
 
-	@Override
-	public Result updateProduct(Product product) {
-		
-		if(product.getProductId()==null || product.getProductId().isEmpty()){
-			return errorResult;
-		}
-		
-		try{
-			productName.setProductId(product.getProductId());
-			productName.setProductName(product.getProductName());
-			
-			productPrice.setProductId(product.getProductId());
-			productPrice.setCurrency(product.getCurrentPrice().getCurrency());
-			productPrice.setProductPrice(product.getCurrentPrice().getValue());
-			
-			restTemplate.put(productNameUrl, productName);
-			restTemplate.put(productPriceUrl, productPrice);
-			return successResult;
-			}catch(Exception e){
-				e.printStackTrace();
-				return errorResult;
-			}
-	}
-	
 	private Product getProductPOJO(ProductName productName, ProductPrice productPrice){
 		return getProductPOJO(productName.getProductId(),productName,productPrice);
 	}
-	
+
 	private Product getProductPOJO(String productId, ProductName productName, ProductPrice productPrice){
-		
+
 		Product product = new Product();
 		CurrentPrice currentPrice = new CurrentPrice();
-		
+
 		if(productName!=null){
 			product.setProductName(productName.getProductName());
 		}else{
 			product.setProductName("Not Available!");
 		}
-		
+
 		if(productPrice!=null){
 			currentPrice.setCurrency(productPrice.getCurrency());
 			currentPrice.setValue(productPrice.getProductPrice());
@@ -144,8 +151,10 @@ public class ProductBoImpl implements ProductBo {
 		}
 		product.setCurrentPrice(currentPrice);
 		product.setProductId(productId);
-		
+
 		return product;
 	}
+
+
 
 }

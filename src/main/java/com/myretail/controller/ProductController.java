@@ -48,5 +48,11 @@ public class ProductController {
 		return productBo.updateProduct(product);
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value="/{productId}", method=RequestMethod.DELETE)
+	public Result deleteProduct(@PathVariable String productId){
+		return productBo.deleteProduct(productId);
+	}
+	
 	
 }

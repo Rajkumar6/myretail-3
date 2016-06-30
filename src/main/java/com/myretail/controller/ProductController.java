@@ -35,11 +35,13 @@ public class ProductController {
 		return productBo.getAllProducts();
 	}
 	
+	@CrossOrigin
 	@RequestMapping(method=RequestMethod.POST)
 	public Result saveProduct(@RequestBody Product product){
 		return productBo.saveProduct(product);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(method=RequestMethod.PUT)
 	public Result updateProduct(@RequestBody Product product){
 		return productBo.updateProduct(product);

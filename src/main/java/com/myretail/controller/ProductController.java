@@ -24,6 +24,7 @@ public class ProductController {
 	@Autowired
 	private ProductBo productBo;
 	
+	@CrossOrigin
 	@RequestMapping(value="/{productId}", method=RequestMethod.GET)
 	public Product getProduct(@PathVariable String productId){
 		return productBo.getProduct(productId);
